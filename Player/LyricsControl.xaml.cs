@@ -26,14 +26,6 @@ namespace Player
             GetLyrics();
         }
 
-        public LyricsControl()
-        {
-            InitializeComponent();
-            artist = "The White Stripes";
-            title = "Fell In Love With A Girl";
-            GetLyrics();
-        }
-
         private void GetLyrics()
         {
             tabTitle.Text = artist + " - " + title;

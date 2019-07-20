@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Player"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="PlaylistTab">
@@ -17,40 +16,27 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Playing from All songs" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Playing from All songs" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button Content="{StaticResource RepeatOff}" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}"/>
             </StackPanel>
         </Grid>
-        <ListView Name="playlist" Margin="5 5 5 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
-            <ListViewItem>Artist - Song 1</ListViewItem>
-            <ListViewItem>Artist - Song 2</ListViewItem>
-            <ListViewItem>Artist - Song 3</ListViewItem>
-            <ListViewItem>Artist - Song 4</ListViewItem>
-            <ListViewItem>Artist - Song 5</ListViewItem>
-            <ListViewItem>Artist - Song 6</ListViewItem>
-            <ListViewItem>Artist - Song 7</ListViewItem>
-            <ListViewItem>Artist - Song 8</ListViewItem>
-            <ListViewItem>Artist - Song 9</ListViewItem>
-            <ListViewItem>Artist - Song 10</ListViewItem>
-            <ListViewItem>Artist - Song 11</ListViewItem>
-            <ListViewItem>Artist - Song 12</ListViewItem>
-            <ListViewItem>Artist - Song 13</ListViewItem>
-            <ListViewItem>Artist - Song 14</ListViewItem>
-            <ListViewItem>Artist - Song 15</ListViewItem>
-            <ListViewItem>Artist - Song 16</ListViewItem>
-        </ListView>
+        <ListView Name="playlist" Margin="5 5 5 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="-5 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-                <Button x:Name="addBtn" Content="{StaticResource PlaylistAdd}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                <Button x:Name="removeBtn" Content="{StaticResource PlaylistRemove}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                <Button x:Name="saveBtn" Content="{StaticResource PlaylistSave}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                <Button x:Name="addBtn" Click="AddBtn_Click" Content="{StaticResource PlaylistAdd}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                <Button x:Name="removeBtn" Click="RemoveBtn_Click" Content="{StaticResource PlaylistRemove}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                <Button x:Name="saveBtn" Click="SaveBtn_Click" Content="{StaticResource PlaylistSave}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
             </StackPanel>
-            <Button x:Name="playlistsBtn" Grid.Column="1" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Foreground="#FF9C27B0" FontSize="16" FontWeight="UltraLight">playlists</Button>
+            <Button x:Name="playlistsBtn" Grid.Column="1" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}" 
+                    HorizontalAlignment="Right" Foreground="#FF9C27B0" FontSize="16" FontWeight="UltraLight">playlists</Button>
         </Grid>
     </Grid>
 </UserControl>

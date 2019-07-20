@@ -18,14 +18,14 @@ namespace Player
         public SongInfo(Song song)
         {
             InitializeComponent();
-            SetSongInfo(song);
+            ShowSongInfo(song);
         }
 
-        public SongInfo(string title, string artist, string album, string year, Image albumImg) 
-            => SetSongInfo(title, artist, album, year, albumImg);
+        public SongInfo(string title, string artist, string album, uint year, Image albumImg) 
+            => ShowSongInfo(title, artist, album, year, albumImg);
 
-        public void SetSongInfo(string title, string artist, string album, 
-            string year, Image albumImg)
+        public void ShowSongInfo(string title, string artist, string album, 
+            uint year, Image albumImg)
         {
             SetTitle(title);
             SetArtist(artist);
@@ -34,7 +34,7 @@ namespace Player
             SetAlbumImage(albumImg);
         }
 
-        public void SetSongInfo(Song song)
+        public void ShowSongInfo(Song song)
         {
             this.song = song;
             SetTitle(song.Title);
@@ -46,32 +46,35 @@ namespace Player
 
         private void SetTitle(string title)
         {
-            this.title.Text = title;
+            this.title.Text = "Title: " + title;
         }
 
         private void SetArtist(string artist)
         {
-            this.artist.Text = artist;
+            this.artist.Text = "Artist: " + artist;
         }
 
         private void SetAlbum(string album)
         {
-            this.album.Text = album;
+            this.album.Text = "Album: " + album;
         }
 
-        private void SetYear(string year)
+        private void SetYear(uint year)
         {
-            this.year.Text = year;
+            this.year.Text = "Year: " + year;
         }
 
         private void SetAlbumImage(Image image)
         {
-            if (image != null)
+            if (image == null || image.Source == null)
             {
-                var imgBrush = new ImageBrush();
-                imgBrush.ImageSource = image.Source;
-                albumImage.Background = imgBrush;
+                image = new Image();
+                image.Source = (ImageSource)FindResource("AlbumDefaultImage");
             }
+
+            var imgBrush = new ImageBrush();
+            imgBrush.ImageSource = image.Source;
+            albumImage.Background = imgBrush;
         }
 
         public Song GetSong()

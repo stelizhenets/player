@@ -16,7 +16,7 @@ namespace Player
             artist.Text = song.Artist;
             title.Text = song.Title;
             album.Text = song.Album;
-            year.Text = song.Year; 
+            year.Text = song.Year.ToString(); 
         }
 
         private void SaveBtn_Click(object sender, System.Windows.RoutedEventArgs e)

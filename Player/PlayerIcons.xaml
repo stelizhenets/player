@@ -21,8 +21,10 @@
     <materialDesign:PackIcon Kind="PlaylistAdd" x:Key="PlaylistAdd" Foreground="#FF9C27B0" />
     <materialDesign:PackIcon Kind="PlaylistRemove" x:Key="PlaylistRemove" Foreground="#FF9C27B0" />
     <materialDesign:PackIcon Kind="ContentSaveOutline" x:Key="PlaylistSave" Foreground="#FF9C27B0"/>
-    
-    <!-- LYRICS VIEWVER -->
+
+    <BitmapImage x:Key="AlbumDefaultImage" UriSource="/images/listen_to_your_dreams.jpg"/>
+
+    <!-- LYRICS VIEWER -->
     <!-- ZOOM -->
     <materialDesign:PackIcon Kind="ZoomInOutline" x:Key="ZoomIn" Foreground="#FF9C27B0" Height="20" Width="20"/>
     <materialDesign:PackIcon Kind="ZoomOutOutline" x:Key="ZoomOut" Foreground="#FF9C27B0" Height="20" Width="20" />

@@ -22,7 +22,7 @@
                 EDIT
             </Button>
         </Grid>
-        <Grid x:Name="albumImage" Background="White" Margin="13 5 13 13" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="270">
+        <Grid x:Name="albumImage" Background="White" Margin="13 5 13 13" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="280">
             <!-- album image -->
             
         </Grid>

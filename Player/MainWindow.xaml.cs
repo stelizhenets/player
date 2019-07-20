@@ -28,18 +28,31 @@ namespace Player
             // songInfo
             songInfo.editBtn.Click += EditBtn_Click;
             songInfo.getLyricsBtn.Click += GetLyricsBtn_Click;
+
+            // playlist
+            currentPlaylistControl.playlist.SelectionChanged += Playlist_SelectionChanged;
+        }
+
+        private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Song current = currentPlaylistControl.playlist.SelectedItem as Song;
+            if(current != null) songInfo.ShowSongInfo(current);
         }
 
         private void GetLyricsBtn_Click(object sender, RoutedEventArgs e)
         {
-            TabItem editTab = new TabItem();
-            editTab.Header = "LYRICS";
-            editTab.IsSelected = true;
-            var tabContent = new LyricsControl();
-            tabContent.closeTabBtn.Click += CloseTab_Click;
-            tabContent.closeTabTopBtn.Click += CloseTab_Click;
-            editTab.Content = tabContent;
-            tabMenu.Items.Add(editTab);
+            Song song;
+            if ((song = songInfo.GetSong()) != null)
+            {
+                TabItem editTab = new TabItem();
+                editTab.Header = "LYRICS";
+                editTab.IsSelected = true;
+                var tabContent = new LyricsControl(song);
+                tabContent.closeTabBtn.Click += CloseTab_Click;
+                tabContent.closeTabTopBtn.Click += CloseTab_Click;
+                editTab.Content = tabContent;
+                tabMenu.Items.Add(editTab);
+            }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -51,7 +64,7 @@ namespace Player
                 editTab.IsSelected = true;
                 var tabContent = new SongInfoEditor(song);
                 tabContent.cancelBtn.Click += CloseTab_Click;
-                tabContent.saveBtn.Click += CloseTab_Click;
+                tabContent.saveBtn.Click += SaveSongInfo_Click;
                 editTab.Content = tabContent;
                 tabMenu.Items.Add(editTab);
             }
@@ -60,6 +73,13 @@ namespace Player
         private void CloseTab_Click(object sender, RoutedEventArgs e)
         {
             tabMenu.Items.Remove(tabMenu.SelectedValue);
+        }
+
+        private void SaveSongInfo_Click(object sender, RoutedEventArgs e)
+        {
+            songInfo.ShowSongInfo(songInfo.GetSong());
+            currentPlaylistControl.playlist.Items.Refresh();
+            CloseTab_Click(null, null);
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
