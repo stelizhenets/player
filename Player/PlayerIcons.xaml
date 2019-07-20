@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Player"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    
+    <!-- PLAY, PAUSE, PREVIOUS, NEXT -->
+    <materialDesign:PackIcon Kind="Play" x:Key="Play" Height="30" Width="30" />
+    <materialDesign:PackIcon Kind="Pause" x:Key="Pause" Height="30" Width="30" />
+    <materialDesign:PackIcon Kind="PreviousTitle" x:Key="PreviousSong" Height="30" Width="30" />
+    <materialDesign:PackIcon Kind="NextTitle" x:Key="NextSong" Height="30" Width="30" />
+    
+    <!-- TOOLBOX -->
+    <materialDesign:PackIcon Kind="ExpandLess" x:Key="ExpandLess" />
+    <materialDesign:PackIcon Kind="ExpandMore" x:Key="ExpandMore" />
+    <materialDesign:PackIcon Kind="Settings" x:Key="Settings" />
+    <materialDesign:PackIcon Kind="CloseCircle" x:Key="Close" />
+    
+    <!-- PLAYLIST-->
+    <materialDesign:PackIcon Kind="RepeatOff" x:Key="RepeatOff" Foreground="#FF9C27B0" />
+    
+    <materialDesign:PackIcon Kind="PlaylistAdd" x:Key="PlaylistAdd" Foreground="#FF9C27B0" />
+    <materialDesign:PackIcon Kind="PlaylistRemove" x:Key="PlaylistRemove" Foreground="#FF9C27B0" />
+    <materialDesign:PackIcon Kind="ContentSaveOutline" x:Key="PlaylistSave" Foreground="#FF9C27B0"/>
+    
+    <!-- LYRICS VIEWVER -->
+    <!-- ZOOM -->
+    <materialDesign:PackIcon Kind="ZoomInOutline" x:Key="ZoomIn" Foreground="#FF9C27B0" Height="20" Width="20"/>
+    <materialDesign:PackIcon Kind="ZoomOutOutline" x:Key="ZoomOut" Foreground="#FF9C27B0" Height="20" Width="20" />
+    <!-- CLOSE -->
+    <materialDesign:PackIcon Kind="CloseCircle" x:Key="CloseTab" />
+    
+</ResourceDictionary>

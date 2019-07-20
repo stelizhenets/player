@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Player.LyricsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Player"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ScrollViewer >
+        <StackPanel Orientation="Vertical" Margin="20 20 20 10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tabTitle" Grid.Column="0" Text="Artist - Song title" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Champagne &amp; Limousines" FontWeight="UltraLight" />
+                <StackPanel Grid.Column="1" Margin="0 0 -12 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="zoomOutBtn" Click="ZoomOutBtn_Click"  Content="{StaticResource ZoomOut}" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="ExtraBlack" Foreground="#FFB027C7"/>
+                    <Button x:Name="zoomInBtn" Click="ZoomInBtn_Click" Content="{StaticResource ZoomIn}" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="ExtraBlack" Foreground="#FFB027C7"/>
+                    <Button x:Name="closeTabTopBtn" Content="{StaticResource CloseTab}" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="ExtraBlack" Foreground="#FFB027C7"/>
+                </StackPanel>
+            </Grid>
+            <TextBox x:Name="lyrics" Margin="15 10 5 10" Background="Transparent" BorderThickness="0" BorderBrush="{x:Null}" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="Auto" Width="Auto" Text="Getting lyrics, please wait..." FontFamily="Champagne &amp; Limousines" FontStretch="Expanded" />
+            <StackPanel Orientation="Horizontal" Margin="-10 10 10 0" CanVerticallyScroll="False">
+                <Button Name="saveBtn" Click="SaveBtn_Click" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB027C7">
+                    SAVE
+                </Button>
+                <Button Name="copyBtn" Click="CopyBtn_Click" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Light" Foreground="#FFB027C7">
+                    COPY
+                </Button>
+                <Button Name="closeTabBtn" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Light" Foreground="#FFB027C7">
+                    CLOSE TAB
+                </Button>
+                <TextBlock x:Name="copyright" Margin="15 5 5 5" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Hidden">Lyrics is provided by Google</TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
