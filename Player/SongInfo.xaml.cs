@@ -46,22 +46,22 @@ namespace Player
 
         private void SetTitle(string title)
         {
-            this.title.Text = "Title: " + title;
+            this.title.Text = title;
         }
 
         private void SetArtist(string artist)
         {
-            this.artist.Text = "Artist: " + artist;
+            this.artist.Text = artist;
         }
 
         private void SetAlbum(string album)
         {
-            this.album.Text = "Album: " + album;
+            this.album.Text = album;
         }
 
         private void SetYear(uint year)
         {
-            this.year.Text = "Year: " + year;
+            this.year.Text = year.ToString();
         }
 
         private void SetAlbumImage(Image image)

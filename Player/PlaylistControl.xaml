@@ -14,7 +14,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Playing from All songs" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" 
                        VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
@@ -22,7 +22,7 @@
                 <Button Content="{StaticResource RepeatOff}" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}"/>
             </StackPanel>
         </Grid>
-        <ListView Name="playlist" Margin="5 5 5 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True" 
+        <ListView Name="playlist" Margin="5 5 20 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.HorizontalScrollBarVisibility="Visible" />
 
         <Grid Grid.Row="2">

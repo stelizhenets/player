@@ -5,39 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Player"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="400">
+             d:DesignHeight="550" d:DesignWidth="800">
     <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
         <Grid Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Changing song information" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
-            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Edit info and save changes" Margin="5 5 5 25" Foreground="#FF9C27B0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="UltraLight" />
-            <TextBlock Grid.Column="0" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center">Artist:</TextBlock>
-            <TextBox x:Name="artist" Grid.Column="1" Grid.Row="2" Margin="15 5 5 5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" TextAlignment="Center" >Artist</TextBox>
-            <TextBlock Grid.Column="0" Grid.Row="3" TextAlignment="Right" VerticalAlignment="Center">Title:</TextBlock>
-            <TextBox x:Name="title" Grid.Column="1" Grid.Row="3" Margin="15 5 5 5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" TextAlignment="Center" >Title</TextBox>
-            <TextBlock Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Album:</TextBlock>
-            <TextBox x:Name="album" Grid.Column="1" Grid.Row="4" Margin="15 5 5 5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" TextAlignment="Center" >Album</TextBox>
-            <TextBlock Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Year:</TextBlock>
-            <TextBox x:Name="year" Grid.Column="1" Grid.Row="5" Margin="15 5 5 5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" TextAlignment="Center" >Year</TextBox>
-            <Button Name="saveBtn" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" FontWeight="Light" Margin="5 25 5 5" Click="SaveBtn_Click">
-                SAVE CHANGES
-            </Button>
-            <Button Name="cancelBtn" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Light" Foreground="#FFB027C7">
-                Cancel
-            </Button>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Changing song information" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Edit info and save changes" Margin="5 5 5 25" Foreground="#FF9C27B0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="UltraLight" />
+            <TextBlock Grid.Row="2" Grid.Column="1"  Margin="5 0 0 0" FontSize="12" VerticalAlignment="Center">Artist:</TextBlock>
+            <TextBox x:Name="artist" Grid.Column="1" Grid.Row="3" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" >Artist</TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="1" Margin="5 10 0 0" FontSize="12">Title:</TextBlock>
+            <TextBox x:Name="title" Grid.Column="1" Grid.Row="5" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" >Title</TextBox>
+            <TextBlock Grid.Row="6" Grid.Column="1" Margin="5 10 0 0" FontSize="12">Album:</TextBlock>
+            <TextBox x:Name="album" Grid.Column="1" Grid.Row="7" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" >Album</TextBox>
+            <TextBlock Grid.Row="8" Grid.Column="1" Margin="5 10 0 0" FontSize="12">Year:</TextBlock>
+            <TextBox x:Name="year" Grid.Column="1" Grid.Row="9" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" >Year</TextBox>
+            <Button Name="saveBtn" Content="SAVE CHANGES" Grid.Row="10" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" FontWeight="Light" Margin="5 25 5 5" Click="SaveBtn_Click" />
+            <Button Name="cancelBtn" Content="Cancel" Grid.Row="11" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Center" FontStretch="Expanded" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Light" Foreground="#FFB027C7" />
+            <Grid Name="albumArt" Grid.Row="2" Grid.Column="0" Grid.RowSpan="8" Margin="0 0 10 0" Height="230" Width="230"/>
         </Grid>
     </Grid>
 </UserControl>

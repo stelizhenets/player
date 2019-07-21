@@ -11,14 +11,18 @@ namespace Player
     {
         private bool expanded = true;
         private bool isPlay = false;
+        private const int MIN_WIDTH = 500;
+        private const int MIN_HEIGHT = 620;
 
         public MainWindow()
         {
             InitializeComponent();
-            MakeEvents();
+            ConnectEventHandlers();
+            mainWindow.MinWidth = MIN_WIDTH;
+            mainWindow.MinHeight = MIN_HEIGHT;
         }
 
-        private void MakeEvents()
+        private void ConnectEventHandlers()
         {
             // appTop
             appTop.closeBtn.Click += Close_Click;
@@ -45,7 +49,7 @@ namespace Player
             if ((song = songInfo.GetSong()) != null)
             {
                 TabItem editTab = new TabItem();
-                editTab.Header = "LYRICS";
+                editTab.Header = song.Title.ToUpper() + " LYRICS";
                 editTab.IsSelected = true;
                 var tabContent = new LyricsControl(song);
                 tabContent.closeTabBtn.Click += CloseTab_Click;
@@ -84,7 +88,8 @@ namespace Player
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            mainWindow.WindowState = WindowState.Normal;
+            DragMove();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -104,21 +109,37 @@ namespace Player
             isPlay = !isPlay;
         }
 
-        private double lastHeight = 600;
+        private double lastHeight = MIN_HEIGHT;
         private void Extend_Click(object sender, RoutedEventArgs e)
         {
+            var beginState = mainWindow.WindowState;
+            mainWindow.WindowState = WindowState.Normal;
             if (expanded)
             {
                 lastHeight = mainWindow.Height;
-                mainWindow.Height = mainWindow.MinHeight;
+                mainWindow.MinHeight = mainWindow.MaxHeight = mainWindow.Height = 60;
                 (sender as Button).Content = FindResource("ExpandMore");
             }
             else
             {
+                mainWindow.MinHeight = MIN_HEIGHT;
+                mainWindow.MinWidth = MIN_WIDTH;
+                mainWindow.MaxHeight = int.MaxValue;
+                mainWindow.MaxWidth = int.MaxValue;
+
                 mainWindow.Height = lastHeight;
                 (sender as Button).Content = FindResource("ExpandLess");
             }
             expanded = !expanded;
+            mainWindow.WindowState = beginState;
+        }
+
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            lastHeight = e.NewSize.Height;
+            if (e.NewSize.Width - MIN_WIDTH < 200)
+                songInfo.Visibility = Visibility.Collapsed;
+            else songInfo.Visibility = Visibility.Visible;
         }
     }
 }

@@ -8,8 +8,9 @@
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         x:Name="mainWindow"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="MainWindow" Height="630" Width="1000" MinHeight="60" MinWidth="200" 
-        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        Title="MainWindow" Height="700" Width="1200"
+        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        SizeChanged="MainWindow_SizeChanged" AllowsTransparency="True">
     <Grid>
         <local:AppTop x:Name="appTop"/>
         <Grid Margin="0 58 0 0">
@@ -18,7 +19,7 @@
                     <Grid x:Name="PlaylistTab" Margin="20 20 20 10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="320" MinWidth="300"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!-- CURRENT PLAYLIST BLOCK -->
                         <local:PlaylistControl x:Name="currentPlaylistControl" Grid.Column="0" />

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Player
 {
@@ -16,7 +17,18 @@ namespace Player
             artist.Text = song.Artist;
             title.Text = song.Title;
             album.Text = song.Album;
-            year.Text = song.Year.ToString(); 
+            year.Text = song.Year.ToString();
+
+            Image image = song.AlbumImage;
+            if (image == null || image.Source == null)
+            {
+                image = new Image();
+                image.Source = (ImageSource)FindResource("AlbumDefaultImage");
+            }
+
+            var imgBrush = new ImageBrush();
+            imgBrush.ImageSource = image.Source;
+            albumArt.Background = imgBrush;
         }
 
         private void SaveBtn_Click(object sender, System.Windows.RoutedEventArgs e)
