@@ -27,7 +27,8 @@ namespace Player
             // appTop
             appTop.closeBtn.Click += Close_Click;
             appTop.playPauseBtn.Click += PlayPause_Click;
-            appTop.expandBtn.Click += Extend_Click;
+            appTop.expandBtn.Click += Expand_Click;
+            appTop.settingsBtn.Click += SettingsBtn_Click;
 
             // songInfo
             songInfo.editBtn.Click += EditBtn_Click;
@@ -35,6 +36,33 @@ namespace Player
 
             // playlist
             currentPlaylistControl.playlist.SelectionChanged += Playlist_SelectionChanged;
+        }
+
+        private void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!expanded)
+                Expand_Click(appTop.expandBtn, null);
+
+            if (!IsTabOpen("SETTINGS"))
+            {
+                TabItem settingsTab = new TabItem();
+                settingsTab.Header = "SETTINGS";
+                settingsTab.IsSelected = true;
+                var tabContent = new SettingsControl();
+                tabContent.cancelBtn.Click += CloseTab_Click;
+                tabContent.saveBtn.Click += CloseTab_Click;
+                settingsTab.Content = tabContent;
+                tabMenu.Items.Add(settingsTab);
+            }
+        }
+
+        private bool IsTabOpen(string tabHeader)
+        {
+            foreach(TabItem tab in tabMenu.Items)
+            {
+                if (tab.Header == tabHeader) return true;
+            }
+            return false;
         }
 
         private void Playlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -110,7 +138,7 @@ namespace Player
         }
 
         private double lastHeight = MIN_HEIGHT;
-        private void Extend_Click(object sender, RoutedEventArgs e)
+        private void Expand_Click(object sender, RoutedEventArgs e)
         {
             var beginState = mainWindow.WindowState;
             mainWindow.WindowState = WindowState.Normal;
