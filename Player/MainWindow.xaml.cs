@@ -13,13 +13,28 @@ namespace Player
         private bool isPlay = false;
         private const int MIN_WIDTH = 500;
         private const int MIN_HEIGHT = 620;
+        private Playlist playlist;
 
-        public MainWindow()
+        public MainWindow(string[] args)
         {
             InitializeComponent();
             ConnectEventHandlers();
+
+            if (args.Length > 0)
+                playlist = new Playlist("Custom", args);
+            else playlist = Playlist.GetMyMusicList();
+            SetPlaylist();
+
             mainWindow.MinWidth = MIN_WIDTH;
             mainWindow.MinHeight = MIN_HEIGHT;
+        }
+
+        private void SetPlaylist()
+        {
+            if(playlist != null)
+            {
+                currentPlaylistControl.SetPlaylist(playlist);
+            }
         }
 
         private void ConnectEventHandlers()

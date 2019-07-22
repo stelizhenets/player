@@ -17,7 +17,11 @@
     
     <!-- PLAYLIST-->
     <materialDesign:PackIcon Kind="RepeatOff" x:Key="RepeatOff" Foreground="#FF9C27B0" />
-    
+    <materialDesign:PackIcon Kind="RepeatOne" x:Key="RepeatOne" Foreground="#FF9C27B0" />
+    <materialDesign:PackIcon Kind="Repeat" x:Key="RepeatAll" Foreground="#FF9C27B0" />
+
+    <materialDesign:PackIcon Kind="Shuffle" x:Key="Shuffle" Foreground="#FF9C27B0" />
+
     <materialDesign:PackIcon Kind="PlaylistAdd" x:Key="PlaylistAdd" Foreground="#FF9C27B0" />
     <materialDesign:PackIcon Kind="PlaylistRemove" x:Key="PlaylistRemove" Foreground="#FF9C27B0" />
     <materialDesign:PackIcon Kind="ContentSaveOutline" x:Key="PlaylistSave" Foreground="#FF9C27B0"/>

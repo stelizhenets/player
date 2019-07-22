@@ -89,6 +89,7 @@
     <Compile Include="LyricsControl.xaml.cs">
       <DependentUpon>LyricsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Playlist.cs" />
     <Compile Include="PlaylistControl.xaml.cs">
       <DependentUpon>PlaylistControl.xaml</DependentUpon>
     </Compile>

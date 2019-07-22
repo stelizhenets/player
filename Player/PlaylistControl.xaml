@@ -13,17 +13,22 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Playing from All songs" Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" 
+            <TextBlock x:Name="playlistNameLabel" Grid.Column="0" Text="Playing from " Margin="5 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" 
                        VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
-            <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Content="{StaticResource RepeatOff}" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBlock x:Name="playlistName" Grid.Column="1" Text="Name" Margin="0 5 5 10" Foreground="#FF9C27B0" HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" FontSize="18" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
+            <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="shuffleBtn" Click="ShuffleBtn_Click" Content="{StaticResource Shuffle}" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                <Button x:Name="playModeBtn" Click="PlayModeBtn_Click" Content="{StaticResource RepeatOff}" VerticalAlignment="Center" Margin="0 0 5 0" Background="{x:Null}" BorderBrush="{x:Null}"/>
             </StackPanel>
         </Grid>
-        <ListView Name="playlist" Margin="5 5 20 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True" 
-                  ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+        <ListView Name="playlist" Margin="5 5 20 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible" AllowDrop="True" PreviewMouseLeftButtonDown="Playlist_PreviewMouseLeftButtonDown" 
+                  MouseMove="Playlist_MouseMove" DragEnter="Playlist_DragEnter" Drop="Playlist_Drop" />
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
