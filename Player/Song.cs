@@ -31,7 +31,7 @@ namespace Player
             return new SongInfoGetter().GetSong(path);
         }
 
-        public void ChangeSongInfo(string title, string artist, string album, 
+        public void ChangeSongInfo(string title, string artist, string album,
             string year, Image albumImg)
         {
             TagLib.File file = TagLib.File.Create(PathToFile);

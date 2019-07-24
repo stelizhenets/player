@@ -8,12 +8,13 @@
     <materialDesign:PackIcon Kind="Pause" x:Key="Pause" Height="30" Width="30" />
     <materialDesign:PackIcon Kind="PreviousTitle" x:Key="PreviousSong" Height="30" Width="30" />
     <materialDesign:PackIcon Kind="NextTitle" x:Key="NextSong" Height="30" Width="30" />
-    
+
     <!-- TOOLBOX -->
     <materialDesign:PackIcon Kind="ExpandLess" x:Key="ExpandLess" />
     <materialDesign:PackIcon Kind="ExpandMore" x:Key="ExpandMore" />
     <materialDesign:PackIcon Kind="Settings" x:Key="Settings" />
     <materialDesign:PackIcon Kind="CloseCircle" x:Key="Close" />
+    <materialDesign:PackIcon Kind="VolumeHigh" x:Key="Volume" />
     
     <!-- PLAYLIST-->
     <materialDesign:PackIcon Kind="RepeatOff" x:Key="RepeatOff" Foreground="#FF9C27B0" />

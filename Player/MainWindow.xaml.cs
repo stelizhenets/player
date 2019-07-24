@@ -10,7 +10,6 @@ namespace Player
     public partial class MainWindow : Window
     {
         private bool expanded = true;
-        private bool isPlay = false;
         private const int MIN_WIDTH = 500;
         private const int MIN_HEIGHT = 620;
         private Playlist playlist;
@@ -19,21 +18,28 @@ namespace Player
         {
             InitializeComponent();
             ConnectEventHandlers();
+            currentPlaylistControl.SetAppTop(appTop);
 
             if (args.Length > 0)
+            {
                 playlist = new Playlist("Custom", args);
-            else playlist = Playlist.GetMyMusicList();
-            SetPlaylist();
+                SetPlaylist(true);
+            }
+            else
+            {
+                playlist = Playlist.GetMyMusicList();
+                SetPlaylist(false);
+            }
 
             mainWindow.MinWidth = MIN_WIDTH;
             mainWindow.MinHeight = MIN_HEIGHT;
         }
 
-        private void SetPlaylist()
+        private void SetPlaylist(bool autoPlay)
         {
             if(playlist != null)
             {
-                currentPlaylistControl.SetPlaylist(playlist);
+                currentPlaylistControl.SetPlaylist(playlist, autoPlay);
             }
         }
 
@@ -41,7 +47,6 @@ namespace Player
         {
             // appTop
             appTop.closeBtn.Click += Close_Click;
-            appTop.playPauseBtn.Click += PlayPause_Click;
             appTop.expandBtn.Click += Expand_Click;
             appTop.settingsBtn.Click += SettingsBtn_Click;
 
@@ -140,18 +145,6 @@ namespace Player
             Close();
         }
 
-        private void PlayPause_Click(object sender, RoutedEventArgs e)
-        {
-            if(isPlay)
-            {
-                (sender as Button).Content = FindResource("Play");
-            } else
-            {
-                (sender as Button).Content = FindResource("Pause");
-            }
-            isPlay = !isPlay;
-        }
-
         private double lastHeight = MIN_HEIGHT;
         private void Expand_Click(object sender, RoutedEventArgs e)
         {
@@ -160,7 +153,7 @@ namespace Player
             if (expanded)
             {
                 lastHeight = mainWindow.Height;
-                mainWindow.MinHeight = mainWindow.MaxHeight = mainWindow.Height = 60;
+                mainWindow.MinHeight = mainWindow.MaxHeight = mainWindow.Height = 58;
                 (sender as Button).Content = FindResource("ExpandMore");
             }
             else

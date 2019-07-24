@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Player
@@ -36,10 +38,19 @@ namespace Player
             if(!string.IsNullOrEmpty(artist.Text) && !string.IsNullOrEmpty(title.Text) &&
                 !string.IsNullOrEmpty(album.Text) && !string.IsNullOrEmpty(year.Text))
             {
-                song.ChangeSongInfo(title.Text, artist.Text, album.Text, year.Text, song.AlbumImage);
+                try
+                {
+                    song.ChangeSongInfo(title.Text, artist.Text, album.Text, year.Text, song.AlbumImage);
+                } catch(IOException)
+                {
+                    MessageBox.Show("Unable to change the song information.\nPossible reasons:\n" +
+                        "1.The song is currently playing or opened in another program.\n" +
+                        "2.This file no longer exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             } else
             {
-                
+                MessageBox.Show("Unable to change the song information.\n" +
+                    "All fields must be filled in before proceeding.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

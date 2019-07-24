@@ -87,6 +87,11 @@ namespace Player
 
         public Song GetCurrentSong() => currentIndex < Items.Count ? Items[currentIndex] : null;
         public int GetCurrentIndex() => currentIndex;
+        public void SetCurrentIndex(int newIndex)
+        {
+            if (newIndex > -1 && newIndex < Items.Count)
+                currentIndex = newIndex;
+        }
 
         public Song AutoNext()
         {

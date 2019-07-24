@@ -30,18 +30,26 @@
             </StackPanel>
 
             <!-- SONG INFO -->
-            <TextBlock x:Name="songInfo" Text="Artist - Song name" Grid.Column="1" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
+            <TextBlock x:Name="songInfo" Margin="0 2 0 0" Text="Artist - Song name" Grid.Column="1" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Champagne &amp; Limousines" FontWeight="Light" />
 
             <!-- TOOLBOX -->
             <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Name="duration" Text="0:00 / 3:26" Grid.Column="1" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" FontFamily="Champagne &amp; Limousines" FontWeight="Light"  Margin="5 5 10 5"/>
                 <Button Name="expandBtn" Content="{StaticResource ExpandLess}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" />
+                <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="volumeBtn" Content="{StaticResource Volume}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" />
+                    <Slider Name="volumeSlider" Grid.Column="1" Width="48" Foreground="White" Maximum="100" Value="100" VerticalAlignment="Center" Visibility="Collapsed"></Slider>
+                </Grid>
                 <Button Name="settingsBtn" Content="{StaticResource Settings}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" />
                 <Button Name="closeBtn" Content="{StaticResource Close}" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" />
             </StackPanel>
 
             <!-- PROGRESS -->
-            <ProgressBar x:Name="progress" Grid.Row="1" Grid.ColumnSpan="3" Value="0" Height="6" Background="#FF9C27B0" BorderBrush="#FF9C27B0" Foreground="#FFB027C7" Cursor="Hand"></ProgressBar>
+            <ProgressBar x:Name="progress" Grid.Row="1" Grid.ColumnSpan="3" Value="0" Background="#FF9C27B0" BorderBrush="#FF9C27B0" Foreground="#FFBE23D9" Height="6" Cursor="Hand" />
         </Grid>
     </Grid>
 </UserControl>

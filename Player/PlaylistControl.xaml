@@ -28,7 +28,7 @@
         </Grid>
         <ListView Name="playlist" Margin="5 5 20 0" Grid.Row="1" SelectionMode="Single" ScrollViewer.CanContentScroll="True"
                   ScrollViewer.HorizontalScrollBarVisibility="Visible" AllowDrop="True" PreviewMouseLeftButtonDown="Playlist_PreviewMouseLeftButtonDown" 
-                  MouseMove="Playlist_MouseMove" DragEnter="Playlist_DragEnter" Drop="Playlist_Drop" />
+                  MouseMove="Playlist_MouseMove" DragEnter="Playlist_DragEnter" Drop="Playlist_Drop" MouseDoubleClick="Playlist_MouseDoubleClick" />
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

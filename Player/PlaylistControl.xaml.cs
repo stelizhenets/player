@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using WinForms = System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -15,6 +16,10 @@ namespace Player
         OpenFileDialog openFileDialog;
         SaveFileDialog saveFileDialog;
         Playlist currentPlaylist;
+        MusicPlayer player;
+        AppTop appTop;
+        WinForms.Timer timer;
+        System.Windows.Threading.DispatcherTimer dispatcherTimer;
 
         public PlaylistControl()
         {
@@ -31,13 +36,35 @@ namespace Player
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
             saveFileDialog.Title = "Save playlist as...";
             saveFileDialog.FileName = "My playlist";
+
+            player = new MusicPlayer();
+            player.AddMediaEndedEventHandler(Player_PlayStateChange);
+
+            timer = new WinForms.Timer();
+            timer.Interval = 300;
+            timer.Tick += UpdatePlayProgress;
+            timer.Enabled = false;
+
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
         }
 
-        public void SetPlaylist(Playlist newPlaylist)
+        public void SetAppTop(AppTop appTop)
+        {
+            this.appTop = appTop;
+            appTop.playPauseBtn.Click += PlayPauseBtn_Click;
+            appTop.nextBtn.Click += NextBtn_Click;
+            appTop.previousBtn.Click += PreviousBtn_Click;
+            appTop.progress.MouseDown += Progress_MouseDown;
+            appTop.volumeSlider.ValueChanged += VolumeSlider_ValueChanged;
+        }
+
+        public void SetPlaylist(Playlist newPlaylist, bool autoPlay = false)
         {
             currentPlaylist = newPlaylist;
             playlist.ItemsSource = currentPlaylist.Items;
             RefreshPlaylist();
+            if (autoPlay) Play(currentPlaylist.GetCurrentSong());
         }
 
         private void RefreshPlaylist()
@@ -83,8 +110,11 @@ namespace Player
 
         private void ShuffleBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentPlaylist.Shuffle();
-            RefreshPlaylist();
+            if (currentPlaylist.Items.Count > 0)
+            {
+                currentPlaylist.Shuffle();
+                RefreshPlaylist();
+            }
         }
 
         PlayMode playMode = PlayMode.RepeatOff;
@@ -189,6 +219,127 @@ namespace Player
                 }
                 startIndex = -1;        // Done!
             }
+        }
+
+        private void Player_PlayStateChange(int NewState)
+        {
+            if (NewState == 8)
+            {
+                Play(currentPlaylist.AutoNext());
+                
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+                dispatcherTimer.Start();
+            }
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            player.Play();
+            dispatcherTimer.Stop();
+        }
+
+        private void Play(Song song)
+        {
+            player.Play(song);
+            if (song != null)
+            {
+                PreparePlay(song);
+            }
+            else
+            {
+                SetPlayPauseButtonIcon("Play");
+                timer.Enabled = false;
+            }
+        }
+
+        private void Play()
+        {
+            player.Play();
+            PreparePlay(currentPlaylist.GetCurrentSong());
+        }
+
+        private void PreparePlay(Song song)
+        {
+            appTop.songInfo.Text = song.Artist + " - " + song.Title;
+            SetPlayPauseButtonIcon("Pause");
+            RefreshPlaylist();
+            string durationString = player.GetDurationString();
+            appTop.duration.Text = "0:00 / " + durationString;
+            timer.Enabled = true;
+        }
+
+        private void UpdatePlayProgress(object sender, EventArgs e)
+        {
+            appTop.progress.Maximum = player.GetDuration();
+            appTop.progress.Value = Convert.ToInt32(player.GetCurrentPosition());
+            appTop.duration.Text = player.GetCurrentPositionString() + " / " + player.GetDurationString();
+        }
+
+        private void Progress_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                double MousePosition = e.GetPosition(appTop.progress).X;
+                player.SetCurrentPosition(appTop.progress.Value = SetProgressBarValue(MousePosition));
+            }
+        }
+
+        private double SetProgressBarValue(double MousePosition)
+        {
+            double ratio = MousePosition / appTop.progress.ActualWidth;
+            double ProgressBarValue = ratio * appTop.progress.Maximum;
+            return ProgressBarValue;
+        }
+
+        private void PreviousBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(currentPlaylist.GetCurrentIndex() > 0)
+                Play(currentPlaylist.Previous());
+        }
+
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(currentPlaylist.GetCurrentIndex() < currentPlaylist.Items.Count-1)
+                Play(currentPlaylist.Next());
+        }
+
+        private void PlayPauseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(player.IsPlay())
+            {
+                player.Pause();
+                SetPlayPauseButtonIcon("Play");
+            } else
+            {
+                if(player.hasURL())
+                {
+                    Play();
+                    SetPlayPauseButtonIcon("Pause");
+                } else
+                {
+                    Play(currentPlaylist.GetSongByIndex(0));
+                }
+            }
+        }
+
+        private void SetPlayPauseButtonIcon(string iconKeyName)
+        {
+            appTop.playPauseBtn.Content = FindResource(iconKeyName);
+        }
+
+        private void Playlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            int currentIndex = currentPlaylist.GetCurrentIndex();
+            if (playlist.SelectedIndex != currentIndex)
+            {
+                currentPlaylist.SetCurrentIndex(playlist.SelectedIndex);
+                Play(currentPlaylist.GetCurrentSong());
+            }
+        }
+
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            player.SetVolume((int)e.NewValue);
         }
     }
 }
